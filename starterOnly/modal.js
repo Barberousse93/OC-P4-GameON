@@ -20,4 +20,11 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
+//Ticket #1 - Evénement 'click' sur bouton fermeture
+const btnClose = document.querySelector('.close');
+btnClose.addEventListener('click', closeModal);
 
+//Ticket #1 - Fermeture de la fenêtre modale
+function closeModal() {
+  modalbg.style.display = "none";
+}
