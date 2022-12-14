@@ -28,3 +28,8 @@ btnClose.addEventListener('click', closeModal);
 function closeModal() {
   modalbg.style.display = "none";
 }
+
+
+function validate() {
+  alert("VALIDE");
+}
