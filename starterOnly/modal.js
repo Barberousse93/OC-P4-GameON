@@ -35,7 +35,7 @@ function closeModal() {
 const BtnRadio = document.getElementsByName('location');
 const CheckCondition = document.getElementById('checkbox1');
 
-// Validation des champs <input> via l'API de validation JS pour utiliser les contraintes HTML
+// Ticket #3 Validation des champs <input> via l'API de validation JS pour utiliser les contraintes HTML
 // par ajout d'un attribut (utilisation du CSS fourni)
 const prenom = document.getElementById('first');
 const formPrenom = document.getElementById('formPrenom');
@@ -148,5 +148,5 @@ function validate() {
     return false;
   };
 };
-
+// Ticket #3 Validation des champs avec messages d'erreur personnlaisés.
 // Ticket #2 Finaliser le formulaire //
