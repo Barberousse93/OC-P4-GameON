@@ -228,7 +228,7 @@ input {
 
 .formData[data-error]::after {
   content: attr(data-error);
-  font-size: 0.4em;
+  font-size: 0.5em;
   color: #e54858;
   display: block;
   margin-top: 7px;
@@ -249,7 +249,7 @@ input {
 
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
-  /* Changement de la couleur du de la zone de texte en erreur +
+  /* Changement de la couleur de la zone de texte en erreur +
   animation pour "attirer l'oeil" de l'utilisateur */
   background-color: #aaa;
   animation-name: vibration;

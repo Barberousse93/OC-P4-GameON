@@ -43,9 +43,11 @@ function ControlePrenom() {
   if (!prenom.validity.valid) {
     formPrenom.setAttribute('data-error', 'Veuillez entrer 2 caractères ou plus pour le champ du prénom.');
     formPrenom.setAttribute('data-error-visible', true);
+    setCookie('Prénom', '', 1);
     return false;
   } else {
     formPrenom.setAttribute('data-error-visible', false);
+    setCookie('Prénom', prenom.value, 1);
     return true;
   };
 };
@@ -56,9 +58,11 @@ function ControleNom() {
   if (!nom.validity.valid) {
     formNom.setAttribute('data-error', 'Veuillez entrer 2 caractères ou plus pour le champ du nom.');
     formNom.setAttribute('data-error-visible', true);
+    setCookie('Nom', '', 1);
     return false;
   } else {
     formNom.setAttribute('data-error-visible', false);
+    setCookie('Nom', nom.value, 1);
     return true;
   };
 };
@@ -69,9 +73,11 @@ function ControleEmail() {
   if (!mail.validity.valid) {
     formEmail.setAttribute('data-error', 'Veuillez entrer une adresse e-mail valide');
     formEmail.setAttribute('data-error-visible', true);
+    setCookie('E-mail', '', 1);
     return false;
   } else {
     formEmail.setAttribute('data-error-visible', false);
+    setCookie('E-mail', mail.value, 1);
     return true;
   };
 };
@@ -82,9 +88,11 @@ function ControleDateNaissance() {
   if (!dateNaissance.validity.valid) {
     formDateNaissance.setAttribute('data-error', 'Veuillez entrer une date valide');
     formDateNaissance.setAttribute('data-error-visible', true);
+    setCookie('DateDeNaissance', '', 1);
     return false;
   } else {
     formDateNaissance.setAttribute('data-error-visible', false);
+    setCookie('DateDeNaissance', dateNaissance.value, 1);
     return true;
   };
 };
@@ -95,9 +103,11 @@ function ControleNbParticipations() {
   if (!nbParticipations.validity.valid) {
     formNbParticipations.setAttribute('data-error', 'Veuillez entrer une valeur entre 0 et 99');
     formNbParticipations.setAttribute('data-error-visible', true);
+    setCookie('Nb participations', '', 1);
     return false;
   } else {
     formNbParticipations.setAttribute('data-error-visible', false);
+    setCookie('Nb participations', nbParticipations.value, 1);
     return true;
   };
 };
@@ -112,6 +122,7 @@ function Location() {
   for (let i = 0; i < BtnRadio.length; i++) {
     if (BtnRadio[i].checked) {
       j++;
+      setCookie('Ville', BtnRadio[i].value, 1);
     };
   };
   //Si j > 0 alors valide
@@ -121,26 +132,39 @@ function Location() {
   } else {
     formVille.setAttribute('data-error', 'Veuillez sélectionner une ville.');
     formVille.setAttribute('data-error-visible', true);
+    setCookie('Ville', '', 1);
     return false;
   }
 };
 
 // Vérification conditions d'utilisation acceptées
 // (case cochée)
-const formConditions = document.getElementById('formConditions');
+const formConditions = document.getElementById('checkbox1');
 function Conditions() {
   if (CheckCondition.checked) {
+    setCookie('ConditionsValidées', 'OUI', 1);
     return true;
   } else {
     formConditions.setAttribute('data-error', "Veuillez accepter les conditions d'utilisation.");
     formConditions.setAttribute('data-error-visible', true);
+    setCookie('ConditionsValidées', 'NON', 1);
     return false;
   };
 };
 
+const formNewsletter = document.getElementById('checkbox2');
+function NewsLetter() {
+  if (formNewsletter.checked) {
+    setCookie('InscriptionNewsletter', 'OUI', 1)
+  } else {
+    setCookie('InscriptionNewsletter', 'NON', 1)
+  };
+  return true;
+}
+
 // Formulaire valide si toutes les verifications sont valides
 function validate() {
-  if (ControlePrenom() && ControleNom() && ControleEmail() && ControleDateNaissance() && ControleNbParticipations() && Location() && Conditions()) {
+  if (ControlePrenom() && ControleNom() && ControleEmail() && ControleDateNaissance() && ControleNbParticipations() && Location() && Conditions() && NewsLetter()) {
     // alert('Formulaire VALIDE');
     return true;
   } else {
@@ -150,3 +174,41 @@ function validate() {
 };
 // Ticket #3 Validation des champs avec messages d'erreur personnlaisés.
 // Ticket #2 Finaliser le formulaire //
+
+//Gestion des cookies (source : https://www.w3schools.com/js/js_cookies.asp )
+//Création cookie
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  let expires = "expires=" + d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+// Lecture cookie
+function getCookie(cname) {
+  let name = cname + "=";
+  let ca = document.cookie.split(';');
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+// Vérification cookie
+function checkCookie() {
+  let user = getCookie("username");
+  if (user != "") {
+    alert("Welcome again " + user);
+  } else {
+    user = prompt("Please enter your name:", "");
+    if (user != "" && user != null) {
+      setCookie("username", user, 365);
+    }
+  }
+}
