@@ -201,14 +201,12 @@ function getCookie(cname) {
 }
 
 // Vérification cookie
-function checkCookie() {
-  let user = getCookie("username");
-  if (user != "") {
-    alert("Welcome again " + user);
+function checkCookie(CookieName) {
+  let cookie = getCookie(CookieName);
+  if (cookie != "") {
+    console.log(CookieName + ' : ' + cookie);
   } else {
-    user = prompt("Please enter your name:", "");
-    if (user != "" && user != null) {
-      setCookie("username", user, 365);
-    }
+    console.log('Cookie ' + CookieName + ' non défini.')
   }
 }
+
