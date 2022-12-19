@@ -157,11 +157,11 @@ function Conditions() {
 const checkNewsLetter = document.getElementById('checkbox2');
 function NewsLetter() {
   if (checkNewsLetter.checked) {
-    alert('coché');
+    // alert('coché');
     setCookie('InscriptionNewsLetter', 'OUI', 1)
   } else {
     setCookie('InscriptionNewsLetter', 'NON', 1)
-    alert('non coché');
+    // alert('non coché');
   };
   return true;
 }
