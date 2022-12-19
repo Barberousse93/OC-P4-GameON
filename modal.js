@@ -165,13 +165,18 @@ function NewsLetter() {
 // Formulaire valide si toutes les verifications sont valides
 function validate() {
   if (ControlePrenom() && ControleNom() && ControleEmail() && ControleDateNaissance() && ControleNbParticipations() && Location() && Conditions() && NewsLetter()) {
-    // alert('Formulaire VALIDE');
+    alert('Formulaire VALIDE');
+    function Message(e) {
+      e.preventDefault();
+      document.getElementById('form').style.display = 'none';
+    };
     return true;
   } else {
     // alert('Formulaire NON VALIDE');
     return false;
   };
 };
+
 // Ticket #3 Validation des champs avec messages d'erreur personnlaisés.
 // Ticket #2 Finaliser le formulaire //
 
