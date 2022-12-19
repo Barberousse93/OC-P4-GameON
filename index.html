@@ -55,7 +55,7 @@
       <div class="content">
         <span class="close"></span>
         <div class="modal-body">
-          <form novalidate id='form' name="reserve" action="index.html" method="get" onsubmit="return validate();">
+          <form novalidate id='form' class='Active' name="reserve" method="get">
             <div class="formData" id="formPrenom">
               <label for="first">Prénom</label><br>
               <input class="text-control" type="text" id="first" name="first" minlength="2" required /><br>
@@ -120,6 +120,11 @@
             </div>
             <input class="btn-submit" type="submit" class="button" value="C'est parti" />
           </form>
+          <!-- Message de remerciement -->
+          <div id="messageRemerciement" class="messageRemerciement notActive">
+            <h1 class="message">Merci pour votre inscription</h1>
+            <button id='btnMerci' class="btn-submit">Fermer</button>
+          </div>
         </div>
       </div>
     </div>

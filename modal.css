@@ -154,6 +154,14 @@ main {
 
 /* Modal form */
 
+.active {
+  display: block;
+}
+
+.notActive {
+  display: none;
+}
+
 .button {
   background: #fe142f;
   margin-top: 0.5em;
@@ -201,6 +209,14 @@ main {
 .modal-body {
   padding: 15px 8%;
   margin: 15px auto;
+}
+
+/*message remerciement*/
+.message {
+  display: flex;
+  height: 650px;
+  text-align: center;
+  align-items: center;
 }
 
 label {

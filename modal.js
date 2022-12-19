@@ -139,10 +139,12 @@ function Location() {
 
 // Vérification conditions d'utilisation acceptées
 // (case cochée)
-const formConditions = document.getElementById('checkbox1');
+const formConditions = document.getElementById('formConditions');
+const checkConditions = document.getElementById('checkbox1');
 function Conditions() {
-  if (CheckCondition.checked) {
+  if (checkConditions.checked) {
     setCookie('ConditionsValidées', 'OUI', 1);
+    formConditions.setAttribute('data-error-visible', false);
     return true;
   } else {
     formConditions.setAttribute('data-error', "Veuillez accepter les conditions d'utilisation.");
@@ -152,33 +154,62 @@ function Conditions() {
   };
 };
 
-const formNewsletter = document.getElementById('checkbox2');
+const checkNewsLetter = document.getElementById('checkbox2');
 function NewsLetter() {
-  if (formNewsletter.checked) {
-    setCookie('InscriptionNewsletter', 'OUI', 1)
+  if (checkNewsLetter.checked) {
+    alert('coché');
+    setCookie('InscriptionNewsLetter', 'OUI', 1)
   } else {
-    setCookie('InscriptionNewsletter', 'NON', 1)
+    setCookie('InscriptionNewsLetter', 'NON', 1)
+    alert('non coché');
   };
   return true;
 }
 
+// Ticket #4 Message de remerciement
+//Gestion du message de remerciement.
+const formulaire = document.getElementById('form');
+const messageRemerciement = document.getElementById('messageRemerciement');
+const btnMerci = document.getElementById('btnMerci');
+
+function Message() {
+  //Masquer le formulaire d'origine
+  formulaire.className = 'notActive';
+  //Afficher le message et le bouton de fermeture
+  messageRemerciement.className = 'active';
+};
+
+btnMerci.addEventListener('click', function event() {
+  //Réactiver le formulaire d'origine
+  formulaire.className = 'active';
+  //Masquer le message
+  messageRemerciement.className = 'notActive';
+  // forcer la fermuture de la modale
+  closeModal();
+  //Réinitialiser le formulaire
+  formulaire.reset();
+});
+// fin : Ticket #4 Message de remerciement
+
+
 // Formulaire valide si toutes les verifications sont valides
-function validate() {
+
+formulaire.addEventListener('submit', function validate(e) {
+  e.preventDefault();
   if (ControlePrenom() && ControleNom() && ControleEmail() && ControleDateNaissance() && ControleNbParticipations() && Location() && Conditions() && NewsLetter()) {
-    alert('Formulaire VALIDE');
-    function Message(e) {
-      e.preventDefault();
-      document.getElementById('form').style.display = 'none';
-    };
+    // alert('Formulaire VALIDE');
+    Message();
     return true;
   } else {
     // alert('Formulaire NON VALIDE');
     return false;
   };
-};
+});
 
-// Ticket #3 Validation des champs avec messages d'erreur personnlaisés.
-// Ticket #2 Finaliser le formulaire //
+// fin : Ticket #3 Validation des champs avec messages d'erreur personnlaisés.
+// fin : Ticket #2 Finaliser le formulaire //
+
+
 
 //Gestion des cookies (source : https://www.w3schools.com/js/js_cookies.asp )
 //Création cookie
