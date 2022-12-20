@@ -198,6 +198,7 @@ formulaire.addEventListener('submit', function validate(e) {
   e.preventDefault();
   if (ControlePrenom() && ControleNom() && ControleEmail() && ControleDateNaissance() && ControleNbParticipations() && Location() && Conditions() && NewsLetter()) {
     // alert('Formulaire VALIDE');
+    funcConsole();
     Message();
     return true;
   } else {
@@ -246,3 +247,16 @@ function checkCookie(CookieName) {
   }
 }
 
+//Affichage dans la console des champs du formulaire.
+function funcConsole() {
+  let champsForm = document.getElementsByTagName('input');
+  for (let i = 0; i < champsForm.length; i++) {
+    if (champsForm[i].type == 'text' || champsForm[i].type == 'email' || champsForm[i].type == 'date' || champsForm[i].type == 'number') {
+      console.log(champsForm[i].name, champsForm[i].value);
+    } else if (champsForm[i].type == 'radio') {
+      console.log(champsForm[i].value, champsForm[i].checked);
+    } else if (champsForm[i].type == 'checkbox') {
+      console.log(champsForm[i].id, champsForm[i].checked)
+    };
+  };
+};
