@@ -37,10 +37,17 @@ const CheckCondition = document.getElementById('checkbox1');
 
 // Ticket #3 Validation des champs <input> via l'API de validation JS pour utiliser les contraintes HTML
 // par ajout d'un attribut (utilisation du CSS fourni)
+// Sauf pour les champs Prénom, Nom et E-mail pas suffisemment fiables (utilisation de REGEX)
+
+function validerNom(nom) {
+  let regex = /^[a-zA-Z]+(([- ])?[a-zA-Z])+$/;
+  return regex.test(nom);
+};
+
 const prenom = document.getElementById('first');
 const formPrenom = document.getElementById('formPrenom');
 function ControlePrenom() {
-  if (!prenom.validity.valid) {
+  if (!validerNom(prenom.value)) {
     formPrenom.setAttribute('data-error', 'Veuillez entrer 2 caractères ou plus pour le champ du prénom.');
     formPrenom.setAttribute('data-error-visible', true);
     setCookie('Prénom', '', 1);
@@ -55,7 +62,8 @@ function ControlePrenom() {
 const nom = document.getElementById('last');
 const formNom = document.getElementById('formNom');
 function ControleNom() {
-  if (!nom.validity.valid) {
+  nom.value = nom.value.toUpperCase();
+  if (!validerNom(nom.value)) {
     formNom.setAttribute('data-error', 'Veuillez entrer 2 caractères ou plus pour le champ du nom.');
     formNom.setAttribute('data-error-visible', true);
     setCookie('Nom', '', 1);
@@ -67,10 +75,16 @@ function ControleNom() {
   };
 };
 
+// Validation adresse mail par RegEx, plus fiable que le contrôle HTML
+function validerEmail(email) {
+  let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+};
+
 const mail = document.getElementById('email');
 const formEmail = document.getElementById('formEmail');
 function ControleEmail() {
-  if (!mail.validity.valid) {
+  if (!validerEmail(mail.value)) {
     formEmail.setAttribute('data-error', 'Veuillez entrer une adresse e-mail valide');
     formEmail.setAttribute('data-error-visible', true);
     setCookie('E-mail', '', 1);
