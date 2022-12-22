@@ -485,7 +485,7 @@ input[data-error]::after {
   color: #fff;
   position: relative;
   text-align: left;
-  /* min-width: 424px; */
+  min-width: 95%;
 }
 
 .hero-content::after {
@@ -682,14 +682,19 @@ footer {
 
 /* Nouveau breakpoint pur les "petits" écrans  */
 @media screen and (max-width:470px) {
+
+  .hero-content {
+    max-width: 85%;
+  }
+
   .hero-headline {
-    font-size: 3rem;
-    width: 100%;
-    text-align: center;
+    font-size: 38px;
+    width: 85%;
+    text-align: left;
   }
 
   .hero-text {
-    width: 100%;
+    width: 85%;
     font-size: 1rem;
   }
 
