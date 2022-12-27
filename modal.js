@@ -50,11 +50,11 @@ function ControlePrenom() {
   if (!validerNom(prenom.value)) {
     formPrenom.setAttribute('data-error', 'Veuillez entrer 2 caractères ou plus pour le champ du prénom.');
     formPrenom.setAttribute('data-error-visible', true);
-    setCookie('Prénom', '', 1);
+    //setCookie('Prénom', '', 1);
     return false;
   } else {
     formPrenom.setAttribute('data-error-visible', false);
-    setCookie('Prénom', prenom.value, 1);
+    //setCookie('Prénom', prenom.value, 1);
     return true;
   };
 };
@@ -66,11 +66,11 @@ function ControleNom() {
   if (!validerNom(nom.value)) {
     formNom.setAttribute('data-error', 'Veuillez entrer 2 caractères ou plus pour le champ du nom.');
     formNom.setAttribute('data-error-visible', true);
-    setCookie('Nom', '', 1);
+    //setCookie('Nom', '', 1);
     return false;
   } else {
     formNom.setAttribute('data-error-visible', false);
-    setCookie('Nom', nom.value, 1);
+    //setCookie('Nom', nom.value, 1);
     return true;
   };
 };
@@ -87,11 +87,11 @@ function ControleEmail() {
   if (!validerEmail(mail.value)) {
     formEmail.setAttribute('data-error', 'Veuillez entrer une adresse e-mail valide');
     formEmail.setAttribute('data-error-visible', true);
-    setCookie('E-mail', '', 1);
+    //setCookie('E-mail', '', 1);
     return false;
   } else {
     formEmail.setAttribute('data-error-visible', false);
-    setCookie('E-mail', mail.value, 1);
+    //setCookie('E-mail', mail.value, 1);
     return true;
   };
 };
@@ -102,11 +102,11 @@ function ControleDateNaissance() {
   if (!dateNaissance.validity.valid) {
     formDateNaissance.setAttribute('data-error', 'Veuillez entrer une date valide');
     formDateNaissance.setAttribute('data-error-visible', true);
-    setCookie('DateDeNaissance', '', 1);
+    //setCookie('DateDeNaissance', '', 1);
     return false;
   } else {
     formDateNaissance.setAttribute('data-error-visible', false);
-    setCookie('DateDeNaissance', dateNaissance.value, 1);
+    //setCookie('DateDeNaissance', dateNaissance.value, 1);
     return true;
   };
 };
@@ -117,11 +117,11 @@ function ControleNbParticipations() {
   if (!nbParticipations.validity.valid) {
     formNbParticipations.setAttribute('data-error', 'Veuillez entrer une valeur entre 0 et 99');
     formNbParticipations.setAttribute('data-error-visible', true);
-    setCookie('Nb participations', '', 1);
+    //setCookie('Nb participations', '', 1);
     return false;
   } else {
     formNbParticipations.setAttribute('data-error-visible', false);
-    setCookie('Nb participations', nbParticipations.value, 1);
+    //setCookie('Nb participations', nbParticipations.value, 1);
     return true;
   };
 };
@@ -136,7 +136,7 @@ function Location() {
   for (let i = 0; i < BtnRadio.length; i++) {
     if (BtnRadio[i].checked) {
       j++;
-      setCookie('Ville', BtnRadio[i].value, 1);
+      //setCookie('Ville', BtnRadio[i].value, 1);
     };
   };
   //Si j > 0 alors valide
@@ -146,7 +146,7 @@ function Location() {
   } else {
     formVille.setAttribute('data-error', 'Veuillez sélectionner une ville.');
     formVille.setAttribute('data-error-visible', true);
-    setCookie('Ville', '', 1);
+    //setCookie('Ville', '', 1);
     return false;
   }
 };
@@ -157,13 +157,13 @@ const formConditions = document.getElementById('formConditions');
 const checkConditions = document.getElementById('checkbox1');
 function Conditions() {
   if (checkConditions.checked) {
-    setCookie('ConditionsValidées', 'OUI', 1);
+    //setCookie('ConditionsValidées', 'OUI', 1);
     formConditions.setAttribute('data-error-visible', false);
     return true;
   } else {
     formConditions.setAttribute('data-error', "Veuillez accepter les conditions d'utilisation.");
     formConditions.setAttribute('data-error-visible', true);
-    setCookie('ConditionsValidées', 'NON', 1);
+    //setCookie('ConditionsValidées', 'NON', 1);
     return false;
   };
 };
@@ -172,9 +172,9 @@ const checkNewsLetter = document.getElementById('checkbox2');
 function NewsLetter() {
   if (checkNewsLetter.checked) {
     // alert('coché');
-    setCookie('InscriptionNewsLetter', 'OUI', 1)
+    //setCookie('InscriptionNewsLetter', 'OUI', 1)
   } else {
-    setCookie('InscriptionNewsLetter', 'NON', 1)
+    //setCookie('InscriptionNewsLetter', 'NON', 1)
     // alert('non coché');
   };
   return true;
